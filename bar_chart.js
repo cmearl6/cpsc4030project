@@ -1,42 +1,52 @@
 // Cole Earl
+var player = "LeBron James";
 
-d3.csv("name-data.csv").then(function(dataset) {
+function updatePlayer(newplayer) {
+    player = newplayer;
+    console.log(player);
+}
+
+d3.csv("dataset/salaries.csv").then(function(dataset) {
 
     var dimensions = {
-        width: 1350,
-        height: 600,
+        width: 1000,
+        height: 500,
         margin: {
             top: 10,
             bottom: 50,
             right: 100,
-            left: 100
+            left: 150
         }
     }
 
-    var name = "Amanda"
+    console.log(player);
 
-    var namedata = Array.from(d3.group(dataset, d => d.year))
+    var playername = "Player Name";
 
-    // use map to get array of objects
-    var years = namedata.map(d => d[0])
-    var array = namedata.map(d => d[1])
-    var objectarray = array.map(d => d[0])
-
-
-    var svg = d3.select("#barchart")
+    var svg = d3.select("#line")
                 .style("width", dimensions.width)
                 .style("height", dimensions.height)
+
+    console.log(dataset)
     
+    var season = "Season Start";
+
+    var years = Array.from(d3.group(dataset, d => d[season]));
+
+    var salary = dataset.filter(d => d[playername] == player);
+
+    var newyear = salary.map(d => d[season]);
+    console.log(newyear);
+
+    console.log(salary);
+    salary.forEach(d => d.Salary = parseInt(d.Salary))
 
     const xScale = d3.scaleBand()
-                   .domain(years)
-                   .range([dimensions.margin.left,dimensions.width - dimensions.margin.right])
-
-    // parse strings to int to get max value
-    objectarray.forEach(d => d[name] = parseInt(d[name]))
+                   .domain(newyear)
+                   .range([dimensions.margin.left,dimensions.width - dimensions.margin.right]);
 
     const yScale = d3.scaleLinear()
-                   .domain([0, d3.max(objectarray, d => d[name])])
+                   .domain([0, d3.max(salary, d => d.Salary)])
                    .range([dimensions.height - dimensions.margin.bottom, dimensions.margin.top])
 
     svg.append('g')
@@ -46,7 +56,7 @@ d3.csv("name-data.csv").then(function(dataset) {
     // create x axis with a tick every 5 years and 65 degree rotation
     svg.append('g')
          .call(d3.axisBottom(xScale)
-         .tickValues(xScale.domain().filter(function(d,i){return ! (i%5)})))
+         .tickValues(xScale.domain()))
          .style("transform", `translateY(${dimensions.height - dimensions.margin.bottom}px)`)
          .selectAll("text")
          .style("text-anchor", "end")
@@ -63,17 +73,18 @@ d3.csv("name-data.csv").then(function(dataset) {
     svg.append("text")
        .attr("transform", "translate(" + (dimensions.margin.left / 2) + "," + (dimensions.height / 2) + ")rotate(-90)")
        .style("text-anchor", "middle")
-       .text("Count")
+       .text("Salary")
          
+    console.log(salary)
 
     var bars = svg.selectAll("rect")
-         .data(objectarray)
+         .data(salary)
          .enter()
          .append("rect")
-         .attr("x", d => xScale(d.year))
-         .attr("y", d => yScale(d[name]))
+         .attr("x", d => xScale(d[season]))
+         .attr("y", d => yScale(d.Salary))
          .attr("width", xScale.bandwidth())
-         .attr("height", d => dimensions.height - dimensions.margin.bottom - yScale(d[name]))
-         .attr("fill", "red")
+         .attr("height", d => dimensions.height - dimensions.margin.bottom - yScale(d.Salary))
+         .attr("fill", "green")
 
 })

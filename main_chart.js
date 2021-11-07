@@ -52,6 +52,9 @@ d3.csv("dataset/player_attributes.csv").then(function(dataset) {
                   .attr("r", d => d[stat] * 2)
                   .on('mouseover', function(e, d) {
                     document.getElementById("player").innerHTML = d.DISPLAY_FIRST_LAST;
+                  })
+                  .on('click', function(e, d){
+                      updatePlayer(d.DISPLAY_FIRST_LAST);
                   });
 
     }
