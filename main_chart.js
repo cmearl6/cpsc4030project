@@ -30,6 +30,7 @@ d3.csv("dataset/player_attributes.csv").then(function(dataset) {
       .text(d => d.Label)
       .attr("value", d => d.Value)
 
+
     function update(selected) {
         activeplayers = dataset.filter(d => d.ROSTERSTATUS == "Active" && d.TEAM_ABBREVIATION == selected)
 
