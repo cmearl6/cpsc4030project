@@ -10,6 +10,9 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
             left: 150
         }
     }
+
+    initializeChart();
+    
     var svg = d3.select('#scatter')
         .style("width", dimensions.width)
         .style("height", dimensions.height)
@@ -64,6 +67,9 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
         .attr("r", d => rScale(rAccessor(d)))
         .attr("stroke", d => colorScale2(xAccessor(d)))
         .attr("stroke-width",3)
+        .on('mouseover', function(e, d) {
+            document.getElementById("player").innerHTML = d.DISPLAY_FIRST_LAST;
+        })
         .on('click', function(e, d){
             updatePlayer(d.DISPLAY_FIRST_LAST);
         });

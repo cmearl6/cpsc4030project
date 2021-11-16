@@ -1,4 +1,3 @@
-
 d3.csv("dataset/player_attributes.csv").then(function(dataset) {
     var width = 400
     var height = 300
