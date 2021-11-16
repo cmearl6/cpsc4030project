@@ -14,18 +14,30 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
         .style("width", dimensions.width)
         .style("height", dimensions.height)
 
-    var yAccessor = d => d.REB
+    var yAccessor = d => +d.PTS
     var xAccessor = d => d.TEAM_ABBREVIATION
+    var rAccessor = d => +d.REB + 1
+
+    var teams = ["ATL", "BOS", "CLE", "NOP", "CHI", "DAL", "DEN", "GSW", "HOU", "LAC", "LAL", "MIA", "MIL", "MIN", "BKN", "NYK", "ORL", "IND", "PHI", "PHX", "POR", "SAC", "SAS", "OKC", "TOR", "UTA", "MEM", "WAS", "DET", "CHA"]
+
 
     var xScale = d3.scaleBand()
-        .domain(d3.map(dataset, xAccessor))
-        .range([dimensions.margin.left, dimensions.width-dimensions.margin.right])
+        .domain(teams)
+        .range([dimensions.margin.left, dimensions.width - dimensions.margin.right])
+
+
     var yScale = d3.scaleLinear()
         .domain(d3.extent(dataset,yAccessor))
-        .range([dimensions.height-dimensions.margin.bottom,dimensions.margin.top])
+        .range([dimensions.height - dimensions.margin.bottom, dimensions.margin.top])
+
+    var rScale = d3.scaleLinear()
+        .domain(d3.extent(dataset, rAccessor))
+        .range(3,10)
+
+    console.log(rScale(1))
 
     console.log(dataset)
-    let activeplayers = dataset.filter(d => d.ROSTERSTATUS == "Active")
+    let activeplayers = dataset.filter(d => d.ROSTERSTATUS == "Active" && d.TEAM_ABBREVIATION != " ")
 
     console.log(activeplayers)
 
@@ -36,6 +48,7 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
         .attr("cx", d => xScale(xAccessor(d)))
         .attr("cy", d => yScale(yAccessor(d)))
         .attr("fill", "black")
-        .attr("r", 3)
+        .attr("opacity",0.4)
+        .attr("r", rAccessor)
 
 })
