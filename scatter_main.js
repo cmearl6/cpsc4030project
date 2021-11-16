@@ -1,8 +1,8 @@
 // Scatterplot code for teams  JavaScript source code
 d3.csv("dataset/player_attributes.csv").then(function (dataset) {
     var dimensions = {
-        width: 1000,
-        height: 500,
+        width: 1500,
+        height: 1000,
         margin: {
             top: 10,
             bottom: 50,
@@ -16,10 +16,10 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
 
     var yAccessor = d => +d.PTS
     var xAccessor = d => d.TEAM_ABBREVIATION
-    var rAccessor = d => +d.REB + 1
+    var rAccessor = d => +d.SALARY
 
     var teams = ["ATL", "BOS", "CLE", "NOP", "CHI", "DAL", "DEN", "GSW", "HOU", "LAC", "LAL", "MIA", "MIL", "MIN", "BKN", "NYK", "ORL", "IND", "PHI", "PHX", "POR", "SAC", "SAS", "OKC", "TOR", "UTA", "MEM", "WAS", "DET", "CHA"]
-
+ //   var team_colors = ["#E03A3E"
 
     var xScale = d3.scaleBand()
         .domain(teams)
@@ -32,7 +32,7 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
 
     var rScale = d3.scaleLinear()
         .domain(d3.extent(dataset, rAccessor))
-        .range(3,10)
+        .range([3, 30])
 
     console.log(rScale(1))
 
@@ -49,6 +49,6 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
         .attr("cy", d => yScale(yAccessor(d)))
         .attr("fill", "black")
         .attr("opacity",0.4)
-        .attr("r", rAccessor)
+        .attr("r", d => rScale(rAccessor(d)))
 
 })
