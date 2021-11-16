@@ -64,6 +64,9 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
         .attr("r", d => rScale(rAccessor(d)))
         .attr("stroke", d => colorScale2(xAccessor(d)))
         .attr("stroke-width",3)
+        .on('click', function(e, d){
+            updatePlayer(d.DISPLAY_FIRST_LAST);
+        });
 
     var xAxisgen = d3.axisBottom().scale(xScale)
 
