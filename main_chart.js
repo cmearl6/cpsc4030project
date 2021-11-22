@@ -86,11 +86,14 @@ d3.csv("dataset/player_attributes.csv").then(function(dataset) {
                   .on('click', function(e, d){
                     updatePlayer(d.DISPLAY_FIRST_LAST);
                   });
+        dots.transition().duration(5000)
+            .attr('cy', d => d[stat])
     }
 
     d3.select("#team").on("change", function(d){
         var selectedOption = d3.select(this).property("value")
         update(selectedOption)
+
     });
     
     d3.select("#stat").on("change", function(d){
