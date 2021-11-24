@@ -1,5 +1,5 @@
 // Cole Earl
-var player = "LeBron James";
+var team = "ATL";
 
 var dimensions = {
     width: 1000,
@@ -12,29 +12,29 @@ var dimensions = {
     }
 }
 
-var svg = d3.select("#line")
+var svgteam = d3.select("#teambar")
             .style("width", dimensions.width)
             .style("height", dimensions.height);
 
-function initializeChart() {
-    player = "";
+function initializeTeamChart() {
+    team = "";
 
-    console.log(player)
-
-
-    d3.csv("dataset/playersalaries.csv").then(function(dataset) {
+    console.log(team)
 
 
+    d3.csv("dataset/salaries.csv").then(function(dataset) {
 
-        var playername = "Player Name";
 
-        svg.selectAll("*").remove();
+
+        var playername = "Team";
+
+        svgteam.selectAll("*").remove();
         
-        var season = "Season Start";
+        var season = "Year";
 
         var years = Array.from(d3.group(dataset, d => d[season]));
 
-        var salary = dataset.filter(d => d[playername] == player);
+        var salary = dataset.filter(d => d[playername] == team);
 
         var newyear = salary.map(d => d[season]);
 
@@ -48,12 +48,12 @@ function initializeChart() {
                     .domain([0, d3.max(salary, d => d.Salary)])
                     .range([dimensions.height - dimensions.margin.bottom, dimensions.margin.top])
 
-        svg.append('g')
+        svgteam.append('g')
             .call(d3.axisLeft(yScale))
             .style("transform", `translateX(${dimensions.margin.left}px)`)
             
         // create x axis with a tick every 5 years and 65 degree rotation
-        svg.append('g')
+        svgteam.append('g')
             .call(d3.axisBottom(xScale)
             .tickValues(xScale.domain()))
             .style("transform", `translateY(${dimensions.height - dimensions.margin.bottom}px)`)
@@ -63,18 +63,18 @@ function initializeChart() {
             .attr("dy", ".15em")
             .attr("transform", "rotate(-65)")
 
-        svg.append("text")
+        svgteam.append("text")
         .attr("x", (dimensions.width - dimensions.margin.right) / 2)
         .attr("y", dimensions.height)
         .style("text-anchor", "middle")
         .text("Year")
 
-        svg.append("text")
+        svgteam.append("text")
         .attr("transform", "translate(" + (dimensions.margin.left / 2) + "," + (dimensions.height / 2) + ")rotate(-90)")
         .style("text-anchor", "middle")
         .text("Salary")
             
-        var bars = svg.selectAll("rect")
+        var bars = svgteam.selectAll("rect")
             .data(salary)
             .enter()
             .append("rect")
@@ -90,25 +90,25 @@ function initializeChart() {
 
 }
 
-function updatePlayer(newplayer) {
-    player = newplayer;
+function updateTeam(newplayer) {
+    team = newplayer;
 
-    console.log(player)
-
-
-    d3.csv("dataset/playersalaries.csv").then(function(dataset) {
+    console.log(team)
 
 
+    d3.csv("dataset/salaries.csv").then(function(dataset) {
 
-        var playername = "Player Name";
 
-        svg.selectAll("*").remove();
+
+        var playername = "Team";
+
+        svgteam.selectAll("*").remove();
         
-        var season = "Season Start";
+        var season = "Year";
 
         var years = Array.from(d3.group(dataset, d => d[season]));
 
-        var salary = dataset.filter(d => d[playername] == player);
+        var salary = dataset.filter(d => d[playername] == team);
 
         var newyear = salary.map(d => d[season]);
 
@@ -122,12 +122,12 @@ function updatePlayer(newplayer) {
                     .domain([0, d3.max(salary, d => d.Salary)])
                     .range([dimensions.height - dimensions.margin.bottom, dimensions.margin.top])
 
-        svg.append('g')
+        svgteam.append('g')
             .call(d3.axisLeft(yScale))
             .style("transform", `translateX(${dimensions.margin.left}px)`)
             
         // create x axis with a tick every 5 years and 65 degree rotation
-        svg.append('g')
+        svgteam.append('g')
             .call(d3.axisBottom(xScale)
             .tickValues(xScale.domain()))
             .style("transform", `translateY(${dimensions.height - dimensions.margin.bottom}px)`)
@@ -137,18 +137,18 @@ function updatePlayer(newplayer) {
             .attr("dy", ".15em")
             .attr("transform", "rotate(-65)")
 
-        svg.append("text")
+        svgteam.append("text")
         .attr("x", (dimensions.width - dimensions.margin.right) / 2)
         .attr("y", dimensions.height)
         .style("text-anchor", "middle")
         .text("Year")
 
-        svg.append("text")
+        svgteam.append("text")
         .attr("transform", "translate(" + (dimensions.margin.left / 2) + "," + (dimensions.height / 2) + ")rotate(-90)")
         .style("text-anchor", "middle")
         .text("Salary")
             
-        var bars = svg.selectAll("rect")
+        var bars = svgteam.selectAll("rect")
             .data(salary)
             .enter()
             .append("rect")
