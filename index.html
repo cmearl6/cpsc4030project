@@ -16,23 +16,32 @@
           left: 0px;
           overflow: hidden;
       }
+      .stream {
+          position: absolute;
+          top:1100px;
+          left:800px;
+      }
+
+
     </style>
   </head>
-  <body>
+  <body style="background-color:darkgrey">
 
-    <h1>NBA Players</h1>
+      <h1>NBA Players</h1>
 
-    <label for="stat">Choose a statistic:</label>
-    <select name="stat" id="stat"></select>
-    <label for="player">Player: </label>
-    <div name="player" id="player" style="display:inline"></div>
+      <label for="stat">Choose a statistic:</label>
+      <select name="stat" id="stat"></select>
+      <label for="player">Player: </label>
+      <div name="player" id="player" style="display:inline"></div>
 
-    <svg id="line" class="line"></svg>
-    <svg id="scatter" class="scatter"></svg>
-    
-    <script src="bar_chart.js"></script>
-    <script src="main_chart.js"></script>
-    <script src="scatter_main.js"></script>
+      <svg id="line" class="line"></svg>
+      <svg id="scatter" class="scatter"></svg>
+      <svg id="stream" class="stream"></svg>
+
+      <script src="bar_chart.js"></script>
+      <script src="main_chart.js"></script>
+      <script src="scatter_main.js"></script>
+      <script src="stream.js"></script>
 
   </body>
 </html>
