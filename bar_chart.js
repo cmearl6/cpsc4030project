@@ -22,7 +22,7 @@ function initializeChart() {
     console.log(player)
 
 
-    d3.csv("dataset/salaries.csv").then(function(dataset) {
+    d3.csv("dataset/playersalaries.csv").then(function(dataset) {
 
 
 
@@ -96,7 +96,7 @@ function updatePlayer(newplayer) {
     console.log(player)
 
 
-    d3.csv("dataset/salaries.csv").then(function(dataset) {
+    d3.csv("dataset/playersalaries.csv").then(function(dataset) {
 
 
 
