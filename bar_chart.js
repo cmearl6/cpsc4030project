@@ -5,7 +5,7 @@ var dimensions = {
     width: 1000,
     height: 500,
     margin: {
-        top: 10,
+        top: 50,
         bottom: 50,
         right: 100,
         left: 150
@@ -120,7 +120,7 @@ function updatePlayer(newplayer) {
 
         var yScale = d3.scaleLinear()
                     .domain([0, d3.max(salary, d => d.Salary)])
-                    .range([dimensions.height - dimensions.margin.bottom, dimensions.margin.top])
+                    .range([dimensions.height - dimensions.margin.bottom, 30])
 
         svg.append('g')
             .call(d3.axisLeft(yScale))
@@ -147,6 +147,16 @@ function updatePlayer(newplayer) {
         .attr("transform", "translate(" + (dimensions.margin.left / 2) + "," + (dimensions.height / 2) + ")rotate(-90)")
         .style("text-anchor", "middle")
         .text("Salary")
+
+        var text = svg
+        .append('text')
+        .attr("id", 'playersalarytext')
+        .attr("x", 200)
+        .attr("y", 10)
+        .attr("dx", "-.8em")
+        .attr("dy", ".15em")
+        .attr("font-family", "sans-serif")
+        .text(newplayer + "'s Salary");
             
         var bars = svg.selectAll("rect")
             .data(salary)
