@@ -14,7 +14,9 @@ var dimensions = {
 
 var svgteam = d3.select("#teambar")
             .style("width", dimensions.width)
-            .style("height", dimensions.height);
+            .style("height", dimensions.height)
+            .style("background-color", "#17408b")
+            .style("border", "2px solid red");
 
 function initializeTeamChart() {
     team = "";
@@ -67,6 +69,7 @@ function initializeTeamChart() {
         .attr("x", (dimensions.width - dimensions.margin.right) / 2)
         .attr("y", dimensions.height)
         .style("text-anchor", "middle")
+        .style("margin-top", 20)
         .text("Year")
 
         svgteam.append("text")

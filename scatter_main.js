@@ -17,7 +17,9 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
     var svg = d3.select('#scatter')
         .style("width", dimensions.width)
         .style("height", dimensions.height)
-        .style("background-color", "lightgrey")
+        .style("background-color", "#17408b")
+        .style("border", "2px solid red")
+        .style("margin", 17)
 
 
 
@@ -126,9 +128,10 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
         })
 
     var xAxisLabel = svg.append("text")
-        .attr("x", (dimensions.width - dimensions.margin.right) / 2)
-        .attr("y", dimensions.height - dimensions.margin.bottom + 50)
+        .attr("x", (dimensions.width - dimensions.margin.right) / 2 + 30)
+        .attr("y", dimensions.height - dimensions.margin.bottom + 70)
         .style("text-anchor", "middle")
+        .style("font-weight", "bold")
         .text("Team")
 
     var yAxis = svg.append('g')
@@ -138,5 +141,6 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
     var yAxisLabel = svg.append("text")
         .attr("transform", "translate(" + (dimensions.margin.left / 2) + "," + (dimensions.height / 2) + ")rotate(-90)")
         .style("text-anchor", "middle")
+        .style("font-weight", "bold")
         .text("Points")
 })
