@@ -99,8 +99,25 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
     // adjust stat
     var stats = [{ "Label": "Points", "Value": "PTS" }, { "Label": "Rebounds", "Value": "REB" }, { "Label": "Assists", "Value": "AST" }]
 
-    d3.select("#stat").on("change", function (d) {
+    d3.select("#stat")
+      .selectAll('options')
+      .data(stats)
+      .enter()
+      .append('option')
+      .text(d => d.Label)
+      .attr("value", d => d.Value);
+
+    d3.select("#stat")
+      .on("change", function (d) {
         stat = d3.select(this).property("value");
+        
+        if (stat == "PTS") {
+            label = "Points";
+        } else if (stat == "REB") {
+            label = "Rebounds";
+        } else if (stat == "AST") {
+            label = "Assists";
+        }
 
         yScale
             .domain(d3.extent(activeplayers, d => +d[stat]))
@@ -110,6 +127,8 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
 
         yAxis.transition().duration(2000)
             .call(d3.axisLeft(yScale))
+
+        yAxisLabel.text(label);
     })
 
 
