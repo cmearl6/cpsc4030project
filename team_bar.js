@@ -1,16 +1,16 @@
 // Cole Earl
 var team = "ATL";
 
-// var dimensions = {
-//     width: 600,
-//     height: 300,
-//     margin: {
-//         top: 10,
-//         bottom: 60,
-//         right: 100,
-//         left: 40
-//     }
-// }
+var dimensions = {
+    width: 500,
+    height: 275,
+    margin: {
+        top: 50,
+        bottom: 70,
+        right: 30,
+        left: 120
+    }
+}
 
 var svgteam = d3.select("#teambar")
             .style("width", dimensions.width)
@@ -149,7 +149,17 @@ function updateTeam(newplayer) {
         svgteam.append("text")
         .attr("transform", "translate(30," + (dimensions.height / 2) + ")rotate(-90)")
         .style("text-anchor", "middle")
-        .text("Salary")
+        .text("Salary");
+
+        var text = svg
+        .append('text')
+        .attr("id", 'playersalarytext')
+        .attr("x", 200)
+        .attr("y", 20)
+        .attr("dx", "-.8em")
+        .attr("dy", ".15em")
+        .attr("font-family", "sans-serif")
+        .text(newplayer + "'s Salary");
             
         var bars = svgteam.selectAll("rect")
             .data(salary)

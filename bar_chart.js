@@ -1,18 +1,7 @@
 // Cole Earl
 var player = "LeBron James";
 
-var dimensions = {
-    width: 500,
-    height: 275,
-    margin: {
-        top: 50,
-        bottom: 70,
-        right: 30,
-        left: 120
-    }
-}
-
-var svg = d3.select("#line")
+var svg = d3.select("#teambar")
             .style("width", dimensions.width)
             .style("height", dimensions.height)
             .style("background-color", "#9ec0ff")
@@ -154,7 +143,7 @@ function updatePlayer(newplayer) {
         .append('text')
         .attr("id", 'playersalarytext')
         .attr("x", 200)
-        .attr("y", 10)
+        .attr("y", 20)
         .attr("dx", "-.8em")
         .attr("dy", ".15em")
         .attr("font-family", "sans-serif")
