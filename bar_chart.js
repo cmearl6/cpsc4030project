@@ -2,19 +2,21 @@
 var player = "LeBron James";
 
 var dimensions = {
-    width: 1000,
-    height: 500,
+    width: 500,
+    height: 275,
     margin: {
         top: 50,
-        bottom: 50,
-        right: 100,
-        left: 150
+        bottom: 70,
+        right: 30,
+        left: 120
     }
 }
 
 var svg = d3.select("#line")
             .style("width", dimensions.width)
-            .style("height", dimensions.height);
+            .style("height", dimensions.height)
+            .style("background-color", "#9ec0ff")
+            .style("border", "2px solid red");
 
 function initializeChart() {
     player = "";
@@ -65,12 +67,12 @@ function initializeChart() {
 
         svg.append("text")
         .attr("x", (dimensions.width - dimensions.margin.right) / 2)
-        .attr("y", dimensions.height)
+        .attr("y", dimensions.height - 10)
         .style("text-anchor", "middle")
         .text("Year")
 
         svg.append("text")
-        .attr("transform", "translate(" + (dimensions.margin.left / 2) + "," + (dimensions.height / 2) + ")rotate(-90)")
+        .attr("transform", "translate(30," + (dimensions.height / 2) + ")rotate(-90)")
         .style("text-anchor", "middle")
         .text("Salary")
             
@@ -139,12 +141,12 @@ function updatePlayer(newplayer) {
 
         svg.append("text")
         .attr("x", (dimensions.width - dimensions.margin.right) / 2)
-        .attr("y", dimensions.height)
+        .attr("y", dimensions.height - 10)
         .style("text-anchor", "middle")
         .text("Year")
 
         svg.append("text")
-        .attr("transform", "translate(" + (dimensions.margin.left / 2) + "," + (dimensions.height / 2) + ")rotate(-90)")
+        .attr("transform", "translate(30," + (dimensions.height / 2) + ")rotate(-90)")
         .style("text-anchor", "middle")
         .text("Salary")
 

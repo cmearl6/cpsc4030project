@@ -1,13 +1,13 @@
 // Scatterplot code for teams  JavaScript source code
 d3.csv("dataset/player_attributes.csv").then(function (dataset) {
     var dimensions = {
-        width: 1200,
-        height: 800,
+        width: 900,
+        height: 600,
         margin: {
             top: 50,
             bottom: 100,
-            right: 100,
-            left: 150
+            right: 30,
+            left: 50
         }
     }
 
@@ -17,7 +17,7 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
     var svg = d3.select('#scatter')
         .style("width", dimensions.width)
         .style("height", dimensions.height)
-        .style("background-color", "#17408b")
+        .style("background-color", "#9ec0ff")
         .style("border", "2px solid red")
         .style("margin", 17)
 
