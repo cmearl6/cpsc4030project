@@ -7,7 +7,7 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
             top: 50,
             bottom: 100,
             right: 30,
-            left: 50
+            left: 60
         }
     }
 
@@ -55,14 +55,6 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
         .domain(teams)
         .range(team_colors2)
 
-    console.log(rScale(1))
-
-    console.log(dataset)
-
-
-    console.log(activeplayers)
-
-
 
     var dots = svg.selectAll("circle")
         .data(activeplayers)
@@ -93,8 +85,6 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
 
     console.log(dataset.filter(d=> +d.REB > 20))
     
-    //DEBUG filter where d.REB > 20 and find where the value is and why it's not showing up on the plot
-
 
     // adjust stat
     var stats = [{ "Label": "Points", "Value": "PTS" }, { "Label": "Rebounds", "Value": "REB" }, { "Label": "Assists", "Value": "AST" }]
