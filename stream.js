@@ -15,7 +15,7 @@ d3.csv("dataset/stream_salary.csv").then(function (dataset) {
         .style("width", dimensions.width)
         .style("height", dimensions.height)
         .style("background-color", "#9ec0ff")
-        .style("border", "2px solid red");
+        .style("border", "2px solid #c9082a");
 
     console.log(dataset)
     var teams = ["ATL", "BOS", "CLE", "NOP", "CHI", "DAL", "DEN", "GSW", "HOU", "LAC", "LAL", "MIA", "MIL", "MIN", "BKN", "NYK", "ORL", "IND", "PHI", "PHX", "POR", "SAC", "SAS", "OKC", "TOR", "UTA", "MEM", "WAS", "DET", "CHA"]

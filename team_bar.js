@@ -16,7 +16,7 @@ var svgteam = d3.select("#teambar")
             .style("width", dimensions.width)
             .style("height", dimensions.height)
             .style("background-color", "#9ec0ff")
-            .style("border", "2px solid red");
+            .style("border", "2px solid #c9082a");
 
 function initializeTeamChart() {
     team = "";

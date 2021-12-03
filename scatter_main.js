@@ -18,7 +18,7 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
         .style("width", dimensions.width)
         .style("height", dimensions.height)
         .style("background-color", "#9ec0ff")
-        .style("border", "2px solid red")
+        .style("border", "2px solid #c9082a")
         .style("margin", 17)
 
 
@@ -71,10 +71,11 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
         .on('mouseover', function (e, d) {
             d3.select(this)
                 .attr("stroke-width", 4)
-            document.getElementById("player").innerHTML = d.DISPLAY_FIRST_LAST;
+            
         })
         .on('click', function (e, d) {
             updatePlayer(d.DISPLAY_FIRST_LAST);
+            document.getElementById("player").innerHTML = d.DISPLAY_FIRST_LAST;
         })
         .on('mouseout', function (e, d){
             d3.select(this)
