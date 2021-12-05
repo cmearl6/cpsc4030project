@@ -87,7 +87,7 @@ function initializeChart() {
 
 }
 
-function updatePlayer(newplayer, statistic) {
+function updatePlayer(newplayer) {
     player = newplayer;
 
     console.log(player)
