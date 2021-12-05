@@ -1,5 +1,8 @@
 // Scatterplot code for teams  JavaScript source code
 d3.csv("dataset/player_attributes.csv").then(function (dataset) {
+
+    var statistic = "PPG";
+    
     var dimensions = {
         width: 900,
         height: 600,
@@ -75,6 +78,7 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
         })
         .on('click', function (e, d) {
             updatePlayer(d.DISPLAY_FIRST_LAST);
+            addLine(d.DISPLAY_FIRST_LAST, statistic);
             document.getElementById("player").innerHTML = d.DISPLAY_FIRST_LAST;
         })
         .on('mouseout', function (e, d){
@@ -85,7 +89,7 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
     var xAxisgen = d3.axisBottom().scale(xScale)
 
     console.log(dataset.filter(d=> +d.REB > 20))
-    
+
 
     // adjust stat
     var stats = [{ "Label": "Points", "Value": "PTS" }, { "Label": "Rebounds", "Value": "REB" }, { "Label": "Assists", "Value": "AST" }]
@@ -104,10 +108,13 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
         
         if (stat == "PTS") {
             label = "Points";
+            statistic = "PPG";
         } else if (stat == "REB") {
             label = "Rebounds";
+            statistic = "RPG";
         } else if (stat == "AST") {
             label = "Assists";
+            statistic = "APG";
         }
 
         yScale
