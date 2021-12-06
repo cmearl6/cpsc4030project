@@ -63,16 +63,21 @@ d3.csv("dataset/stream_salary.csv").then(function (dataset) {
         .domain(teams)
         .range(team_colors2)
 
-    svg_line.selectAll("path")
+    svg_line.selectAll("line")
         .data(sumstat)
+        .enter()
+        .append('g')
+        .style("stroke", function (d) { return colorScale1(d.team) })
+        // Second we need to enter in the 'values' part of this group
+        .selectAll("line")
+        .data(function (d) { return d.values })
         .enter()
         .append("path")
         .attr("fill", "none")
-        .attr("stroke",colorScale1(d=> d.team))
         .attr("stroke-width", 1.5)
         .attr("d", d3.line()
-            .x(xScale(d => d.values.year))
-            .y(yScale(d => d.values.value))
+            .x(xScale(d => d.year))
+            .y(yScale(d => d.value))
         )
 
     svg_line
@@ -90,7 +95,7 @@ d3.csv("dataset/stream_salary.csv").then(function (dataset) {
         .attr("cx", function (d) { return xScale(d.year) })
         .attr("cy", function (d) { return yScale(d.value) })
         .attr("r", 5)
-        .attr("stroke", "white")
+
 
 
     svg_line.append('g')
