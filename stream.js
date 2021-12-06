@@ -1,12 +1,14 @@
+function streamgraph() {
 // Trying a streamgraph in JavaScript source code
 d3.csv("dataset/stream_salary.csv").then(function (dataset) {
-
 
     var svg_stream = d3.select('#stream')
         .style("width", dimensions.width)
         .style("height", dimensions.height)
         .style("background-color", "#9ec0ff")
         .style("border", "2px solid #c9082a");
+
+    svg_stream.selectAll("*").remove();
 
     console.log(dataset)
     var teams = ["ATL", "BOS", "CLE", "NOP", "CHI", "DAL", "DEN", "GSW", "HOU", "LAC", "LAL", "MIA", "MIL", "MIN", "BKN", "NYK", "ORL", "IND", "PHI", "PHX", "POR", "SAC", "SAS", "OKC", "TOR", "UTA", "MEM", "WAS", "DET", "CHA"]
@@ -91,3 +93,6 @@ d3.csv("dataset/stream_salary.csv").then(function (dataset) {
         .style("font-weight", "bold")
         .text("Salary");
 })
+
+}
+
