@@ -5,8 +5,8 @@ d3.csv("dataset/stream_salary.csv").then(function (dataset) {
 
 
     var dimensions = {
-        width: 500,
-        height: 400,
+        width: 600,
+        height: 500,
         margin: {
             top: 30,
             bottom: 100,
@@ -51,7 +51,7 @@ d3.csv("dataset/stream_salary.csv").then(function (dataset) {
         .range([dimensions.margin.left, dimensions.width - dimensions.margin.right]);
 
     var yScale = d3.scaleLinear()
-        .domain([0, 2000000000])
+        .domain([0, 150000000])
         .range([dimensions.height - dimensions.margin.bottom, 30])
 
 
@@ -75,7 +75,23 @@ d3.csv("dataset/stream_salary.csv").then(function (dataset) {
             .y(yScale(d => d.values.value))
         )
 
-    console.log()
+    svg_line
+        // First we need to enter in a group
+        .selectAll("myDots")
+        .data(sumstat)
+        .enter()
+        .append('g')
+        .style("fill", function (d) { return colorScale1(d.team) })
+        // Second we need to enter in the 'values' part of this group
+        .selectAll("myPoints")
+        .data(function (d) { return d.values })
+        .enter()
+        .append("circle")
+        .attr("cx", function (d) { return xScale(d.year) })
+        .attr("cy", function (d) { return yScale(d.value) })
+        .attr("r", 5)
+        .attr("stroke", "white")
+
 
     svg_line.append('g')
         .call(d3.axisLeft(yScale))
