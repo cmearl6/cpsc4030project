@@ -1,15 +1,6 @@
 // Trying a streamgraph in JavaScript source code
 d3.csv("dataset/stream_salary.csv").then(function (dataset) {
-    var dimensions = {
-        width: 500,
-        height: 600,
-        margin: {
-            top: 30,
-            bottom: 100,
-            right: 50,
-            left: 150
-        }
-    }
+
 
     var svg_stream = d3.select('#stream')
         .style("width", dimensions.width)
@@ -62,6 +53,9 @@ d3.csv("dataset/stream_salary.csv").then(function (dataset) {
         .append("path")
         .attr("d", sizes)
         .style("fill", d => colorScale1(d.key))
+        .on('click', function (e, d) {
+            
+        })
 
     var xAxisgen = d3.axisBottom().scale(xScale)
     var yAxisgen = d3.axisLeft().scale(yScale)
