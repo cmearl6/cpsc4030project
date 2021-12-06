@@ -10,11 +10,6 @@
     />
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <style>
-      .line {
-        position: absolute;
-        top: 430px;
-        left: 930px;
-      }
       .scatter {
         position: absolute;
         top: 100px;
@@ -29,9 +24,16 @@
       }
       .stream {
         position: absolute;
-        top: 420px;
+        top: 430px;
         left: 930px;
       }
+        .teamLine {
+            position: absolute;
+            top: 430px;
+            left: 930px;
+        }
+
+
     </style>
   </head>
   <body>
@@ -47,7 +49,7 @@
       </span>
       <span id="teams" style="display: inline">3) Choose a team. Total Salary is shown below. </span>
     </nav>
-    <svg id="line" class="line"></svg>
+    
     <svg id="scatter" class="scatter"></svg>
     <svg id="teambar" class="teambar"></svg>
     <svg id="stream" class="stream"></svg>
@@ -56,6 +58,7 @@
     <script src="bar_chart.js"></script>
     <script src="scatter_main.js"></script>
     <script src="stream.js"></script>
-    
+
+
   </body>
 </html>
