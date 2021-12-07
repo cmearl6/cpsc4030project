@@ -87,11 +87,8 @@ function initializeChart() {
 
 }
 
-function updatePlayer(newplayer) {
+function updatePlayer(newplayer, color, outline) {
     player = newplayer;
-
-    console.log(player)
-
 
     d3.csv("dataset/playersalaries.csv").then(function(dataset) {
 
@@ -163,7 +160,8 @@ function updatePlayer(newplayer) {
             .attr("y", d => yScale(d.Salary))
             .attr("width", xScale.bandwidth())
             .attr("height", d => dimensions.height - dimensions.margin.bottom - yScale(d.Salary))
-            .attr("fill", "green")
+            .attr("fill", color)
+            .attr("stroke", outline)
 
         console.log(salary)
 
@@ -172,7 +170,7 @@ function updatePlayer(newplayer) {
 }
 
 
-function addLine(newplayer, statistic) {
+function addLine(newplayer, statistic, color) {
     d3.csv("dataset/Seasons_Stats.csv").then(function(dataset) {
 
         var statdesc = "Points";
@@ -241,7 +239,7 @@ function addLine(newplayer, statistic) {
         svgstream.append("path")
            .datum(yearlystats)
            .attr("fill", "none")
-           .attr("stroke", "steelblue")
+           .attr("stroke", color)
            .attr("stroke-width", 1.5)
            .attr("d", d3.line()
                 .x(function(d) {return xScale(d.Year)})

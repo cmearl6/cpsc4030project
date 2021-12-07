@@ -78,8 +78,10 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
             
         })
         .on('click', function (e, d) {
-            updatePlayer(d.DISPLAY_FIRST_LAST);
-            addLine(d.DISPLAY_FIRST_LAST, statistic);
+            fillcolor = d3.select(this).style("fill");
+            outlinecolor = d3.select(this).style("stroke");
+            updatePlayer(d.DISPLAY_FIRST_LAST, fillcolor, outlinecolor);
+            addLine(d.DISPLAY_FIRST_LAST, statistic, fillcolor);
             document.getElementById("player").innerHTML = d.DISPLAY_FIRST_LAST;
         })
         .on('mouseout', function (e, d){
@@ -142,7 +144,7 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
         .attr("dy", ".05em")
         .attr("transform", "rotate(-65)")
         .on('click', function (e, d) {
-            updateTeam(d);
+            updateTeam(d, (colorScale1(d)), (colorScale2(d)));
             streamgraph();
         })
 

@@ -93,11 +93,8 @@ function initializeTeamChart() {
 
 }
 
-function updateTeam(newplayer) {
+function updateTeam(newplayer, color, outline) {
     team = newplayer;
-
-    console.log(team)
-
 
     d3.csv("dataset/salaries.csv").then(function(dataset) {
 
@@ -169,7 +166,8 @@ function updateTeam(newplayer) {
             .attr("y", d => yScale(d.Salary))
             .attr("width", xScale.bandwidth())
             .attr("height", d => dimensions.height - dimensions.margin.bottom - yScale(d.Salary))
-            .attr("fill", "green")
+            .attr("fill", color)
+            .attr("stroke", outline)
 
         console.log(salary)
 
