@@ -19,12 +19,12 @@ d3.csv("dataset/player_attributes.csv").then(function (dataset) {
     streamgraph();
 
     var svg = d3.select('#scatter')
-        .style("width", dimensions.width)
-        .style("height", dimensions.height)
+        .append("svg")
+        .attr("preserveAspectRatio", "xMinYMin meet")
+        .attr("viewBox", "0 0 900 600")
+        .classed("svg-content", true)
         .style("background-color", "#9ec0ff")
-        .style("border", "2px solid #c9082a")
-        .style("margin", 17)
-
+        .style("border", "2px solid #c9082a");
 
 
     var yAccessor = d => +d.PTS
