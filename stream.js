@@ -27,7 +27,7 @@ d3.csv("dataset/stream_salary.csv").then(function (dataset) {
         .range([dimensions.margin.left, dimensions.width - dimensions.margin.right])
 
     var yScale = d3.scaleLinear()
-        .domain([-2000000000, 2000000000])
+        .domain([0, 2000000000])
         .range([dimensions.height - dimensions.margin.bottom, dimensions.margin.top])
 
     var colorScale1 = d3.scaleOrdinal()
@@ -38,7 +38,7 @@ d3.csv("dataset/stream_salary.csv").then(function (dataset) {
         .range(team_colors2)
 
     var streamGraph = d3.stack()
-        .offset(d3.stackOffsetSilhouette)
+        .offset(d3.stackOffsetNone)
         .keys(teams)
         (dataset)
 
