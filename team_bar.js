@@ -6,7 +6,7 @@ var dimensions = {
     height: 318,
     margin: {
         top: 50,
-        bottom: 70,
+        bottom: 80,
         right: 30,
         left: 80
     }
