@@ -22,7 +22,7 @@ d3.csv("dataset/stream_salary.csv").then(function (dataset) {
         .range([dimensions.margin.left, dimensions.width - dimensions.margin.right])
 
     var yScale = d3.scaleLinear()
-        .domain([0, 4000000000])
+        .domain([0, 4])
         .range([dimensions.height - dimensions.margin.bottom, dimensions.margin.top])
 
     var colorScale1 = d3.scaleOrdinal()
@@ -40,8 +40,8 @@ d3.csv("dataset/stream_salary.csv").then(function (dataset) {
 
     var sizes = d3.area()
         .x(d => xScale(+d.data.Year))
-        .y0(d => yScale(d[0]))
-        .y1(d => yScale(d[1]))
+        .y0(d => yScale(d[0])/1000000000)
+        .y1(d => yScale(d[1])/100000000)
 
     console.log(streamGraph[0][0][1]/1000)
 
@@ -60,7 +60,6 @@ d3.csv("dataset/stream_salary.csv").then(function (dataset) {
     var xAxisgen = d3.axisBottom().scale(xScale)
     var yAxisgen = d3.axisLeft().scale(yScale) 
     yAxisgen.tickFormat(d3.format(f))
-    f = f().replace(/G/, "B")
 
     var xAxis = svgstream.append("g")
         .call(d3.axisBottom(xScale)
@@ -91,7 +90,7 @@ d3.csv("dataset/stream_salary.csv").then(function (dataset) {
         .attr("transform", "translate("+ (dimensions.margin.left/3)+"," + (dimensions.height / 2) + ")rotate(-90)")
         .style("text-anchor", "middle")
         .style("font-weight", "bold")
-        .text("Salary [Billion $]");
+        .text("Salary (Billion $)");
 })
 
 }
