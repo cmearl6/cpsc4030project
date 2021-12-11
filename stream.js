@@ -40,8 +40,8 @@ d3.csv("dataset/stream_salary.csv").then(function (dataset) {
 
     var sizes = d3.area()
         .x(d => xScale(+d.data.Year))
-        .y0(d => yScale(d[0])/1000000000)
-        .y1(d => yScale(d[1])/100000000)
+        .y0(d => yScale(d[0]/1000000000))
+        .y1(d => yScale(d[1]/1000000000))
 
     console.log(streamGraph[0][0][1]/1000)
 
@@ -55,11 +55,9 @@ d3.csv("dataset/stream_salary.csv").then(function (dataset) {
             
         })
 
-    var f = d3.format("$0.2s")
 
     var xAxisgen = d3.axisBottom().scale(xScale)
     var yAxisgen = d3.axisLeft().scale(yScale) 
-    yAxisgen.tickFormat(d3.format(f))
 
     var xAxis = svgstream.append("g")
         .call(d3.axisBottom(xScale)
@@ -90,7 +88,17 @@ d3.csv("dataset/stream_salary.csv").then(function (dataset) {
         .attr("transform", "translate("+ (dimensions.margin.left/3)+"," + (dimensions.height / 2) + ")rotate(-90)")
         .style("text-anchor", "middle")
         .style("font-weight", "bold")
-        .text("Salary (Billion $)");
+        .text("Salary");
+
+    var title = svgstream
+        .append('text')
+        .attr("id", 'playersalarytext')
+        .attr("x", 200)
+        .attr("y", 20)
+        .attr("dx", "-.8em")
+        .attr("dy", ".15em")
+        .attr("font-family", "sans-serif")
+        .text("Salary by Team (billions)");
 })
 
 }
